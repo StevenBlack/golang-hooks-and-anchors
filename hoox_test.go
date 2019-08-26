@@ -17,9 +17,9 @@ func TestHoox(t *testing.T) {
 	a.Sethook(c)
 
 	th := thing{t: "Hello"}
-	out := a.Process(&th)
+	a.Process(&th)
 
-	result := out.t
+	result := th.t
 	expect := "Hellofoobarbaz"
 	if result != expect {
 		t.Errorf("Expect result to be equal %s, but %s\n", expect, result)
