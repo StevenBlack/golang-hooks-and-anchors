@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package hoox
 
 type thing struct {
 	t   string
@@ -41,34 +39,20 @@ func (h *Hook) Sethook(hk Hook) bool {
 	if h.ohook == nil {
 		h.ohook = &hk
 		return true
-	} else {
-		h.ohook.Sethook(hk)
-		return true
 	}
+	h.ohook.Sethook(hk)
+	return true
 }
 
 func (h *Hook) Process(th *thing) *thing {
 	ret := h.execute(th)
 	if h.ohook == nil {
 		return ret
-	} else {
-		return h.ohook.Process(ret)
 	}
+	return h.ohook.Process(ret)
 }
 
 func (h *Hook) execute(th *thing) *thing {
 	th.Sett(th.t + h.name)
 	return th
-}
-
-func main() {
-	a := Hook{name: "foo"}
-	b := Hook{name: "bar"}
-	c := Hook{name: "baz"}
-	a.Sethook(b)
-	a.Sethook(c)
-
-	t := thing{t: "Hello"}
-	out := a.Process(&t)
-	fmt.Print(out.t)
 }
