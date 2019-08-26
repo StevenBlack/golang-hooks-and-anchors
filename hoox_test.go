@@ -4,6 +4,11 @@ import (
 	"testing"
 )
 
+func (h *Hook) execute(th *thing) *thing {
+	th.Sett(th.t + h.name)
+	return th
+}
+
 func TestHoox(t *testing.T) {
 	a := Hook{name: "foo"}
 	b := Hook{name: "bar"}
