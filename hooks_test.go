@@ -1,4 +1,4 @@
-package hoox
+package hooks
 
 import (
 	"testing"
