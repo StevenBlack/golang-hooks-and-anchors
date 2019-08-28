@@ -21,7 +21,7 @@ func (t *thing) SetText(tstr string) {
 type hooker interface {
 	Sethook(*Hook) bool
 	Process(*thing) *thing
-	preprocess(*thing)
+	preprocess(*thing) bool
 	execute(*thing) *thing
 	postprocess(*thing)
 }
@@ -29,6 +29,7 @@ type hooker interface {
 type Hook struct {
 	name  string
 	ohook *Hook
+	hooker
 }
 
 func (h *Hook) Setname(nm string) {
@@ -44,8 +45,16 @@ func (h *Hook) Sethook(hk Hook) bool {
 	return true
 }
 
+func (h *Hook) preprocess(th *thing) bool {
+	return true
+}
+
 func (h *Hook) Process(th *thing) *thing {
-	ret := h.execute(th)
+	ret := th
+	if h.preprocess(th) {
+		ret = h.execute(th)
+	}
+
 	if h.ohook == nil {
 		return ret
 	}
