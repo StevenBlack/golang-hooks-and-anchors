@@ -51,8 +51,3 @@ func (h *Hook) Process(th *thing) *thing {
 	}
 	return h.ohook.Process(ret)
 }
-
-// func (h *Hook) execute(th *thing) *thing {
-// 	th.Sett(th.t + h.name)
-// 	return th
-// }
