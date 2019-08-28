@@ -1,21 +1,21 @@
 package hooks
 
 type thing struct {
-	t   string
-	i   int
-	i8  int8
-	i16 int16
-	i32 int32
-	i64 int64
-	u   uint
-	u8  uint8
-	u16 uint16
-	u32 uint32
-	u64 uint64
+	text string
+	i    int
+	i8   int8
+	i16  int16
+	i32  int32
+	i64  int64
+	u    uint
+	u8   uint8
+	u16  uint16
+	u32  uint32
+	u64  uint64
 }
 
-func (t *thing) Sett(tstr string) {
-	t.t = tstr
+func (t *thing) SetText(tstr string) {
+	t.text = tstr
 }
 
 type hooker interface {
